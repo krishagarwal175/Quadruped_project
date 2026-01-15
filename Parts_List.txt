@@ -1,0 +1,155 @@
+# Quadruped Robot Project – Parts List (BOM)
+# Repository-ready text file
+# Maintained by: Krish
+# Last updated: 2026-01-15
+
+====================================================
+1. COMPUTE & CONTROL
+====================================================
+- NVIDIA Jetson Orin Nano
+  Role: High-level control, perception, future autonomy
+  OS: Ubuntu (JetPack)
+
+- ESP32 Development Board
+  Role: Low-level servo control, gait timing, real-time tasks
+  Interface: UART / I2C with Jetson
+
+- PCA9685 16-Channel PWM Servo Driver
+  Role: Generates stable PWM signals for servos
+  Interface: I2C
+  Voltage: 5–6 V logic-compatible
+
+====================================================
+2. ACTUATION
+====================================================
+- DS3240MG High Torque Servo Motors (270°)
+  Quantity: 12 (3 per leg × 4 legs)
+  Positions:
+    - Shoulder (Hip)
+    - Mid-limb (Thigh/Knee equivalent)
+    - Foot (Ankle)
+  Notes:
+    - No position feedback
+    - Metal gears
+    - High stall torque suitable for load-bearing
+
+====================================================
+3. POWER SYSTEM
+====================================================
+- 4S LiPo Battery – 6200 mAh
+  Nominal Voltage: 14.8 V
+  Fully Charged: 16.8 V
+  Role: Main power source
+
+- DC Buck Converter (15–20 V → 5 V)
+  Role: Step-down voltage for servos and logic
+  Features:
+    - Current protection
+    - High current capability
+
+- Power Distribution Wiring
+  Wire Gauges Used:
+    - 10 AWG (main battery lines)
+    - 12 AWG (high-current servo rails)
+    - 18–22 AWG (logic and signal)
+
+- XT60 / XT90 Connectors
+  Role: Battery connection and power safety
+
+====================================================
+4. SENSORS
+====================================================
+- MPU6050 IMU
+  Sensors:
+    - 3-axis Accelerometer
+    - 3-axis Gyroscope
+  Role:
+    - Orientation estimation
+    - Stability feedback
+    - PD control reference
+
+====================================================
+5. MECHANICAL STRUCTURE
+====================================================
+- 3D Printed Parts (Material: PETG)
+  Components:
+    - Main torso frame
+    - Shoulder brackets
+    - Mid-limb links
+    - Foot links
+    - Servo mounts
+    - Cable routing guides
+
+- Fasteners
+  Types:
+    - M2 screws and nuts
+    - M3 screws and nuts
+  Usage:
+    - Servo mounting
+    - Structural joints
+
+- Bearings / Bushings (where applicable)
+  Role: Reduce friction at rotating joints
+
+====================================================
+6. FEET & GROUND INTERFACE
+====================================================
+- Rubber Feet / Pads
+  Role:
+    - Shock absorption
+    - Improved grip
+    - Noise reduction
+
+- Optional TPU foot caps
+  Role:
+    - Compliance
+    - Vibration damping
+
+====================================================
+7. COMMUNICATION & INTERFACES
+====================================================
+- I2C Wiring
+  Used for:
+    - PCA9685
+    - MPU6050
+
+- UART Wiring
+  Used for:
+    - Jetson ↔ ESP32 communication
+
+- USB Cables
+  Role:
+    - Programming
+    - Debugging
+
+====================================================
+8. TOOLS & SUPPORTING HARDWARE
+====================================================
+- Soldering Iron & Solder Wire
+- Heat Shrink Tubes
+- Multimeter
+- Zip Ties / Cable Sleeves
+- Thread Locker (medium strength)
+
+====================================================
+9. SOFTWARE STACK (REFERENCE)
+====================================================
+- Ubuntu (Jetson)
+- Python
+- NumPy
+- Matplotlib (visualization & kinematics)
+- Custom PD Controllers
+- FSM-based gait & limb control
+- I2C & GPIO libraries
+
+====================================================
+10. NOTES
+====================================================
+- Architecture is stability-first and reflex-based
+- Designed for incremental upgrades:
+  - Encoders
+  - Force sensors
+  - Vision modules
+  - ROS 2 integration
+
+End of File
